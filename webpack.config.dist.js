@@ -1,16 +1,36 @@
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
+
+  devtool: 'source-map',
+
   entry: {
     'with-button': ['./src/facebook-with-button.js'],
     'render-props': ['./src/facebook.js'],
   },
 
   module: {
-    loaders: [
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-      { test: /\.scss$/, loader: 'css?modules&localIdentName=[local]!postcss!sass' },
-    ],
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
+          }
+        ]
+      }
+    ]
   },
 
   externals: {
@@ -19,27 +39,28 @@ module.exports = {
   },
 
   output: {
-    filename: 'dist/facebook-login-[name].js',
+    filename: 'facebook-login-[name].js',
     libraryTarget: 'umd',
     library: 'FacebookLogin',
   },
 
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js', '.scss']
   },
 
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-  ],
+  // plugins: [
+  //   new webpack.DefinePlugin({
+  //     'process.env': {
+  //       'NODE_ENV': JSON.stringify('production'),
+  //     },
+  //   }),
+  //   new webpack.optimize.UglifyJsPlugin({
+  //     compress: {
+  //       warnings: false,
+  //     },
+  //     sourceMap: true,
+  //   }),
+  //   new webpack.optimize.DedupePlugin(),
+  //   new webpack.optimize.OccurrenceOrderPlugin(),
+  // ],
 };

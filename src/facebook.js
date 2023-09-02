@@ -236,5 +236,4 @@ class FacebookLogin extends React.Component {
     return this.props.render(propsForRender);
   }
 }
-
 export default FacebookLogin;

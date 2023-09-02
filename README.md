@@ -1,4 +1,6 @@
-# React Facebook Login - [![Build Status](https://travis-ci.org/keppelen/react-facebook-login.svg?branch=master)](https://travis-ci.org/keppelen/react-facebook-login)
+### Fork of [react-facebook-login](https://github.com/keppelen/react-facebook-login)
+
+# React Facebook Login
 
 > A Component React for Facebook Login
 
