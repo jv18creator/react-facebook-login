@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "description": "A Component React for Facebook Login",
   "main": "dist/facebook-login-with-button.js",
-  "private": "false",
+  "private": false,
   "release": {
     "branches": [
       "master",
